@@ -1,17 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TabNavigator} from 'react-navigation';
+import { StackNavigator} from 'react-navigation';
 import AboutScreen from './src/AboutScreen';
 import VideoScreen from './src/VideoScreen';
 import WEBVIEW from './src/WebView'
 
-const MainNavigator = TabNavigator({
-  Home : { screen: WEBVIEW },
-  About : { screen: AboutScreen }
-},{
-  navigationOptions: {
-    tabBarVisible: false
-  }
+const MainNavigator = StackNavigator({
+  Home : { screen: VideoScreen },
+  WebView : { screen: WEBVIEW },
+
 })
 
 export default class App extends React.Component {
