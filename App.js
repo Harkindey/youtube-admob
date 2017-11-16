@@ -1,23 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TabNavigator} from 'react-navigation';
+import AboutScreen from './src/AboutScreen';
+import VideoScreen from './src/VideoScreen';
+import WEBVIEW from './src/WebView'
 
 const MainNavigator = TabNavigator({
-  splash: {screen: SplashScreen},
-  video: {screen: VideoScreen}
+  Home : { screen: WEBVIEW },
+  About : { screen: AboutScreen }
 },{
   navigationOptions: {
     tabBarVisible: false
-  },
-  lazy: true
+  }
 })
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
           <MainNavigator />
-        </View>
     );
   }
 }
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#324323',
     alignItems: 'center',
     justifyContent: 'center',
   },
