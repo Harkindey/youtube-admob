@@ -7,6 +7,7 @@ import {
     PublisherBanner,
     AdMobRewarded
   } from "expo";
+import api from './api/api';
 const APP_ID = 'ca-app-pub-9458148096593235~8739853271';
 const BANNER_ID = 'ca-app-pub-9458148096593235/5084567348';
 const REWARDED_ID = 'ca-app-pub-9458148096593235/5846984679';
@@ -17,11 +18,14 @@ AdMobRewarded.setTestDeviceID('EMULATOR');
 console.disableYellowBox = true;
 
 class VideoScreen extends Component {
-   
-     _openRewarded =  (url) => {
+   componentWillMount() {
+      const videos =  api.getVideos()
+   }
+    ads = (url) => {
         console.log(url);
-    //  AdMobRewarded.requestAd(() => AdMobRewarded.showAd());      
-    //    navigate('WebView'); 
+        const {navigate} = this.props.navigation
+        AdMobRewarded.requestAd(() => AdMobRewarded.showAd());      
+        navigate('WebView', {url :url}); 
       };
 
     render(){  
@@ -30,16 +34,16 @@ class VideoScreen extends Component {
             <ScrollView >
                 <View  style={{ flex: 1,alignItems: 'center', justifyContent: 'center' }}>  
                     <Card title='Video Title'>
-                    <View style={{ height: 200 }}>
-                        <Image source ={{ uri: 'http://lorempixel.com/g/400/200'}}/>
+                    <View style={{ height: 170, width: 300 }}>
+                        <Image source ={{ uri: 'https//i.ytimg.com/vi/xsX1scbJnDc/hqdefault.jpg'}}/>
                         <Text>Video Title</Text>
                         <Text>Duration</Text>
                     </View> 
-                    </Card>
                     <View>
-                            <Text style={styles.title}>REWARDED AD</Text>
-                            <Button title="OPEN VIDEO" color="green" onPress={this._openRewarded} />
+                        <Button title="OPEN VIDEO" color="green" onPress={this.ads.bind(this, 'https://www.youtube.com/embed/CvEnDmw9Nnc?rel=0&autoplay=1&showinfo=0&controls=0')} />
                         </View>
+                    </Card>
+                    
                 </View>
             </ScrollView>
             <AdMobBanner
