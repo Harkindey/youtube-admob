@@ -10,21 +10,21 @@ const config = {
   };
   firebase.initializeApp(config);
 
-  const video = {0:{
-      title:'9ICE-Photocopy(Official Version- Naija Beats)',
-      imageurl: 'https//i.ytimg.com/vi/xsX1scbJnDc/hqdefault.jpg',
-      duration: '4:22',
-      id : 'xsX1scbJnDc'
-  },
-1:{
-    title:'9ICE-Photocopy(Official Version- Naija Beats)',
-    imageurl: 'https//i.ytimg.com/vi/xsX1scbJnDc/hqdefault.jpg',
-    duration: '4:22',
-    id : 'xsX1scbJnDc'
-}}
-
   module.exports = {
-      getVideos = () => {
+      getVideos : () => {
+        const video = {
+            0:{
+            "title":'9ICE-Photocopy(Official Version- Naija Beats)',
+            "imageurl": 'http://facebook.github.io/react/img/logo_og.png',
+            "duration": '4:22',
+            "id" : 'xsX1scbJnDc'
+          },
+          1:{
+              "title":'9ICE-Photocopy(Official Version- Naija Beats)',
+              "imageurl": 'http://facebook.github.io/react/img/logo_og.png',
+              "duration": '4:22',
+              "id" : 'xsX1scbJnDc'
+          }};
           return video
       }
   }

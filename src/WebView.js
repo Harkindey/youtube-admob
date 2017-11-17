@@ -8,10 +8,12 @@ import {
 
 class WEBVIEW extends Component {
     render () {
-        console.log(this.props.navigation.state.params.url)
+        const { id } = this.props.navigation.state.params
+        let url = `https://www.youtube.com/embed/${id}?rel=0&autoplay=1&showinfo=0&controls=0`;
+        console.log(url);
         return (
             <View style={styles.container}>
-                <WebView source={{ uri: this.props.navigation.state.params.url}} />
+                <WebView source={{ uri: url }} />
             </View>
         )
     }

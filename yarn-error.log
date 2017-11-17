@@ -1,0 +1,51 @@
+Arguments: 
+  /usr/local/Cellar/node/8.6.0/bin/node /usr/local/Cellar/yarn/1.1.0/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/emmanuelakinde/.composer/vendor/bin:/Users/emmanuelakinde/npm-global/bin:/usr/local/bin:/usr/local/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/emmanuelakinde/.composer/vendor/bin:/Users/emmanuelakinde/npm-global/bin:/usr/local/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/yarn-[version]/bin:/Users/emmanuelakinde/Library/Android/sdk/tools:/Users/emmanuelakinde/Library/Android/sdk/platform-tools:/opt/yarn-[version]/bin:/Users/emmanuelakinde/npm-global/bin:/Users/emmanuelakinde/Library/Android/sdk/tools:/Users/emmanuelakinde/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.1.0
+
+Node version: 
+  8.6.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "main": "node_modules/expo/AppEntry.js",
+    "private": true,
+    "dependencies": {
+      "expo": "^22.0.0",
+      "firebase": "^4.6.2",
+      "react": "16.0.0-beta.5",
+      "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.2.tar.gz",
+      "react-native-elements": "^0.18.2",
+      "react-navigation": "^1.0.0-beta.19"
+    },
+    "name": "youtube-ads",
+    "version": "0.0.0",
+    "description": "Hello Expo!",
+    "author": null
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: https://registry.yarnpkg.com/expo: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:122548:19)
+      at Object.onceWrapper (events.js:314:30)
+      at emitNone (events.js:105:13)
+      at ClientRequest.emit (events.js:207:7)
+      at TLSSocket.emitTimeout (_http_client.js:722:34)
+      at Object.onceWrapper (events.js:314:30)
+      at emitNone (events.js:105:13)
+      at TLSSocket.emit (events.js:207:7)
+      at TLSSocket.Socket._onTimeout (net.js:400:8)
+      at ontimeout (timers.js:469:11)
