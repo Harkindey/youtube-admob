@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, ScrollView,  WebView, View, Image, Dimensions, Picker} from 'react-native';
+import { StyleSheet, 
+    Text, 
+    ScrollView, 
+    WebView, 
+    View, 
+    Image, 
+    Dimensions,
+    Share,
+    ActivityIndicator } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
 import {
     AdMobBanner,
@@ -8,13 +16,23 @@ import {
     AdMobRewarded,
     Constants
   } from "expo";
-import api from './api/api';
+  import firebase from 'firebase';
 import _ from 'lodash'
 const APP_ID = 'ca-app-pub-9859695340262318~8036501499';
 const BANNER_ID = 'ca-app-pub-9859695340262318/6575794750';
 const REWARDED_ID = 'ca-app-pub-9859695340262318/8938519628';
 const x = Dimensions.get('window').width;
 const y = Dimensions.get('window').height;
+  
+const config = {
+    apiKey: "AIzaSyCGziM8ZF5AUvrJKPy2gB5Y5Hm2fSYa-SM",
+    authDomain: "ads-186107.firebaseapp.com",
+    databaseURL: "https://ads-186107.firebaseio.com",
+    projectId: "youtubeads-186107",
+    storageBucket: "youtubeads-186107.appspot.com",
+    messagingSenderId: "796180200883"
+  };
+  firebase.initializeApp(config);
 
 
 AdMobRewarded.setAdUnitID(REWARDED_ID);
@@ -40,12 +58,16 @@ class VideoScreen extends Component {
             videos : ''
         }
     }
-   componentWillMount() {
-      const videos =  api.getVideos()
-      var resArray = _.values(videos);
-      this.setState({
-          videos : resArray
-      });
+  async componentWillMount() {
+    firebase.database().ref('/saved_videos/videos')
+    .once('value', snapshot => {
+        const bean = snapshot.val()
+        var resArray = _.values(bean);
+        this.setState({
+            videos : resArray.reverse()
+        });
+    })
+    
    }
     ads = (id) => {
         const {navigate} = this.props.navigation
@@ -58,11 +80,11 @@ class VideoScreen extends Component {
             <View  style={{ flex: 1,alignItems: 'center', justifyContent: 'center',  }} key={index}>  
                 <Card title={item.title} containerStyle={{borderRadius: 10 }}>
                 <View style={{ height: 170, width: 300 }}>
-                    <Image source ={{ uri: 'http://facebook.github.io/react/img/logo_og.png'}} style={{height: x* 0.4 , width: x * 0.53333 }}/>
+                    <Image source={{ uri: item.thumbnails.medium.url }} style={{height: x* 0.4 , width: x * 0.8 }}/>
                     <Text>Duration : {item.duration}</Text>
                 </View> 
                 <View>
-                    <Button title="OPEN VIDEO" backgroundColor="green" onPress={this.ads.bind(this, item.id )} />
+                    <Button title="OPEN VIDEO" backgroundColor='blue' onPress={this.ads.bind(this, item.id )} />
                     </View>
                 </Card>           
             </View>
@@ -73,7 +95,7 @@ class VideoScreen extends Component {
         return (
             <View  style={{ flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor: 'grey' }}>
             <ScrollView >
-                {this.renderVid()}
+                {(this.state.videos) ? this.renderVid() : <ActivityIndicator style={{ paddingTop: y * 0.3 }} color='blue' size='large' /> }
             </ScrollView>
             <AdMobBanner
                     bannerSize="banner"
