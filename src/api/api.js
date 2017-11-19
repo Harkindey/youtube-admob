@@ -12,19 +12,9 @@ const config = {
 
   module.exports = {
       getVideos : () => {
-        const video = {
-            0:{
-            "title":'9ICE-Photocopy(Official Version- Naija Beats)',
-            "imageurl": 'http://facebook.github.io/react/img/logo_og.png',
-            "duration": '4:22',
-            "id" : 'xsX1scbJnDc'
-          },
-          1:{
-              "title":'9ICE-Photocopy(Official Version- Naija Beats)',
-              "imageurl": 'http://facebook.github.io/react/img/logo_og.png',
-              "duration": '4:22',
-              "id" : 'xsX1scbJnDc'
-          }};
-          return video
+        firebase.database().ref('/students/')
+        .once('value', snapshot => {
+          return snapshot;
+        })
       }
   }

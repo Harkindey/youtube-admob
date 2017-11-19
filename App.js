@@ -7,8 +7,7 @@ import WEBVIEW from './src/WebView'
 
 const MainNavigator = StackNavigator({
   Home : { screen: VideoScreen },
-  WebView : { screen: WEBVIEW },
-
+  WebView : { screen: WEBVIEW }
 })
 
 export default class App extends React.Component {
