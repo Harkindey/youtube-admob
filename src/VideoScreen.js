@@ -6,15 +6,17 @@ import { StyleSheet,
     View, 
     Image, 
     Dimensions,
-    Share,
-    ActivityIndicator } from 'react-native';
+    ActivityIndicator,
+    Linking,
+    Share } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
-import {
+import Expo, {
     AdMobBanner,
     AdMobInterstitial,
     PublisherBanner,
     AdMobRewarded,
-    Constants
+    Constants,
+    Notifications
   } from "expo";
   import firebase from 'firebase';
 import _ from 'lodash'
@@ -42,12 +44,19 @@ console.disableYellowBox = true;
 class VideoScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         headerTitle: 'Videos',
-        headerRight:  (<Icon name="share" iconStyle={{padding: 10, color: 'blue'}} size={30} onPress={() => {
-
+        headerRight:  (<Icon name="share" iconStyle={{padding: 10, color: 'blue'}} size={30} underlayColor='white' onPress={(e) => {
+            Share.share({
+                message: 'Download Dharianwale kirtan online Video',
+                url: 'http://bam.tech',
+                title: 'Wow, did you see that?'
+              })
+            console.log('Rate in Progress');
         }}/>),
-        headerLeft: (<Icon name="rate-review" iconStyle={{padding: 10, color: 'blue'}} size={30}  onPress={
-            () => {
-
+        headerLeft: (<Icon name="rate-review" iconStyle={{padding: 11, color: 'blue'}} size={30} underlayColor='white' onPress={(e) => {
+            // Linking.canOpenURL(link).then(supported => {
+            //     supported && Linking.openURL(link);
+            // }, (err) => console.log(err));
+            console.log('Share In Progress')
             }
         }/>)
     });
@@ -55,20 +64,32 @@ class VideoScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
-            videos : ''
+            videos : null
         }
     }
-  async componentWillMount() {
-    firebase.database().ref('/saved_videos/videos')
-    .once('value', snapshot => {
-        const bean = snapshot.val()
-        var resArray = _.values(bean);
-        this.setState({
-            videos : resArray.reverse()
-        });
-    })
-    
+    data = () => {
+        firebase.database().ref('/saved_videos/videos')
+        .on('value', snapshot => {
+            const bean = snapshot.val()
+            var resArray = _.values(bean);
+            this.setState({
+                videos : resArray.reverse()
+            });
+        })
+    }
+  componentWillMount() {
+        this.data();
    }
+
+   refresh =() => {
+    this.setState({
+        videos : null
+    });
+    this.data();
+   }
+
+   
+    
     ads = (id) => {
         const {navigate} = this.props.navigation
         AdMobRewarded.requestAd(() => AdMobRewarded.showAd());      
@@ -77,11 +98,11 @@ class VideoScreen extends Component {
       renderVid() {
         return this.state.videos.map((item, index) => {
             return (     
-            <View  style={{ flex: 1,alignItems: 'center', justifyContent: 'center',  }} key={index}>  
+            <View  style={{ flex: 1,alignItems: 'center', justifyContent: 'center'}} key={index}>  
                 <Card title={item.title} containerStyle={{borderRadius: 10 }}>
-                <View style={{ height: 170, width: 300 }}>
+                <View style={{ height: 170, width: 300,alignItems: 'center', justifyContent: 'center' }}>
                     <Image source={{ uri: item.thumbnails.medium.url }} style={{height: x* 0.4 , width: x * 0.8 }}/>
-                    <Text>Duration : {item.duration}</Text>
+                    <Text>Duration : {item.duration.replace(/PT/g,'').replace(/M/g,':').replace(/S/g,'').replace(/H/g,':')}</Text>
                 </View> 
                 <View>
                     <Button title="OPEN VIDEO" backgroundColor='blue' onPress={this.ads.bind(this, item.id )} />
@@ -93,9 +114,11 @@ class VideoScreen extends Component {
 
     render(){  
         return (
-            <View  style={{ flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor: 'grey' }}>
+            <View  style={{ flex: 1 ,alignItems: 'center', justifyContent: 'center'}}>
             <ScrollView >
-                {(this.state.videos) ? this.renderVid() : <ActivityIndicator style={{ paddingTop: y * 0.3 }} color='blue' size='large' /> }
+                {(this.state.videos) ? 
+                    (this.state.videos.length > 0 ) ? this.renderVid() :  <Button title="Refresh" style={{ paddingTop: y * 0.3 }} backgroundColor='blue' onPress={this.refresh.bind(this)} />
+                    : <ActivityIndicator style={{ paddingTop: y * 0.3 }} color='blue' size='large' /> }
             </ScrollView>
             <AdMobBanner
                     bannerSize="banner"
