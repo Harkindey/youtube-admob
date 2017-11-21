@@ -1,0 +1,29 @@
+{
+    "expo": {
+      "name": "youtube-ads",
+      "description": "An empty new project",
+      "slug": "youtube-ads",
+      "privacy": "public",
+      "sdkVersion": "22.0.0",
+      "android": {
+        "package": "com.kirtan.Dharianwalekirtan-online"
+      },
+      "version": "1.0.0",
+      "orientation": "portrait",
+      "primaryColor": "#cccccc",
+      "icon": "./assets/icon.jpg",
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
+      "packagerOpts": {
+        "assetExts": ["ttf", "mp4"]
+      },
+      "ios": {
+        "supportsTablet": true,
+        "bundleIdentifier": "com.kirtan.Dharianwale-kirtan-online"
+      }
+    }
+  }
+  

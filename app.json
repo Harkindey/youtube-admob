@@ -5,6 +5,9 @@
     "slug": "youtube-ads",
     "privacy": "public",
     "sdkVersion": "22.0.0",
+    "android": {
+      "package": "com.kirtan.Dharianwalekirtan-online"
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
@@ -18,7 +21,8 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kirtan.Dharianwale-kirtan-online"
     }
   }
 }

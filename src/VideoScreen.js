@@ -20,9 +20,9 @@ import Expo, {
   } from "expo";
   import firebase from 'firebase';
 import _ from 'lodash'
-const APP_ID = 'ca-app-pub-9859695340262318~8036501499';
-const BANNER_ID = 'ca-app-pub-9859695340262318/6575794750';
-const REWARDED_ID = 'ca-app-pub-9859695340262318/8938519628';
+const APP_ID = 'ca-app-pub-7500330782806219~1013346428';
+const BANNER_ID = 'ca-app-pub-7500330782806219/2166769700';
+const INTERSTITIAL_ID = 'ca-app-pub-7500330782806219/8889581410';
 const x = Dimensions.get('window').width;
 const y = Dimensions.get('window').height;
   
@@ -37,7 +37,7 @@ var config = {
   firebase.initializeApp(config);
 
 
-AdMobRewarded.setAdUnitID(REWARDED_ID);
+  AdMobInterstitial.setAdUnitID(INTERSTITIAL_ID);
 AdMobRewarded.setTestDeviceID(Constants.deviceId);
 console.disableYellowBox = true;
 
@@ -92,7 +92,7 @@ class VideoScreen extends Component {
     
     ads = (id) => {
         const {navigate} = this.props.navigation
-        AdMobRewarded.requestAd(() => AdMobRewarded.showAd());      
+        AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd());      
         navigate('WebView', {id :id}); 
       };
       renderVid() {
@@ -122,7 +122,7 @@ class VideoScreen extends Component {
             </ScrollView>
             <AdMobBanner
                     bannerSize="banner"
-                    adUnitID='ca-app-pub-1425926517331745/4139536433'
+                    adUnitID='ca-app-pub-7500330782806219/2166769700'
                     didFailToReceiveAdWithError={this.bannerError}
                     testDeviceID={Constants.deviceId}
                 />

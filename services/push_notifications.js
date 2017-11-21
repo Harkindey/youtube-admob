@@ -10,7 +10,7 @@ const PUSH_ENDPOINT = 'http://localhost:3333/note';
     } else {
         const { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
 
-        if ( status != granted ) {
+        if ( status !== 'granted' ) {
             return;
         }
         let token = await Notifications.getExponentPushTokenAsync();
