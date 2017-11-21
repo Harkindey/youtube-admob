@@ -26,13 +26,13 @@ const REWARDED_ID = 'ca-app-pub-9859695340262318/8938519628';
 const x = Dimensions.get('window').width;
 const y = Dimensions.get('window').height;
   
-const config = {
-    apiKey: "AIzaSyCGziM8ZF5AUvrJKPy2gB5Y5Hm2fSYa-SM",
-    authDomain: "ads-186107.firebaseapp.com",
-    databaseURL: "https://ads-186107.firebaseio.com",
-    projectId: "youtubeads-186107",
-    storageBucket: "youtubeads-186107.appspot.com",
-    messagingSenderId: "796180200883"
+var config = {
+    apiKey: "AIzaSyCV8ACvEgwdWGTnZYbvciYRO_ESPPVrkGE",
+    authDomain: "dhadrianwale-kirtan-onli-3bb89.firebaseapp.com",
+    databaseURL: "https://dhadrianwale-kirtan-onli-3bb89.firebaseio.com",
+    projectId: "dhadrianwale-kirtan-onli-3bb89",
+    storageBucket: "",
+    messagingSenderId: "512292602448"
   };
   firebase.initializeApp(config);
 
@@ -44,7 +44,7 @@ console.disableYellowBox = true;
 class VideoScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         headerTitle: 'Videos',
-        headerRight:  (<Icon name="share" iconStyle={{padding: 10, color: 'blue'}} size={30} underlayColor='white' onPress={(e) => {
+        headerRight:  (<Icon name="share" iconStyle={{padding: 10, color: 'blue'}} size={30} underlayColor='white' onPress={() => {
             Share.share({
                 message: 'Download Dharianwale kirtan online Video',
                 url: 'http://bam.tech',
@@ -52,7 +52,7 @@ class VideoScreen extends Component {
               })
             console.log('Rate in Progress');
         }}/>),
-        headerLeft: (<Icon name="rate-review" iconStyle={{padding: 11, color: 'blue'}} size={30} underlayColor='white' onPress={(e) => {
+        headerLeft: (<Icon name="rate-review" iconStyle={{padding: 11, color: 'blue'}} size={30} underlayColor='white' onPress={() => {
             // Linking.canOpenURL(link).then(supported => {
             //     supported && Linking.openURL(link);
             // }, (err) => console.log(err));
