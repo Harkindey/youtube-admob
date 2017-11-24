@@ -46,7 +46,7 @@ class VideoScreen extends Component {
         headerTitle: 'Videos',
         headerRight:  (<Icon name="share" iconStyle={{padding: 10, color: 'blue'}} size={30} underlayColor='white' onPress={() => {
             Share.share({
-                message: 'Download Dharianwale kirtan online Video',
+                message: 'Download Dharianwale Kirtan Online Video',
                 url: 'http://bam.tech',
                 title: 'Wow, did you see that?'
               })

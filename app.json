@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "youtube-ads",
+    "name": "Dharianwale Kirtan Online",
     "description": "An empty new project",
-    "slug": "youtube-ads",
+    "slug": "dharianwale-kirtan-online",
     "privacy": "public",
     "sdkVersion": "22.0.0",
     "android": {
-      "package": "com.kirtan.Dharianwalekirtan-online"
+      "package": "exp.kirtanDharianwale.Dharianwalekirtan-online"
     },
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icon.jpg",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,7 +22,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kirtan.Dharianwale-kirtan-online"
+      "bundleIdentifier": "com.kirtanDharianwale.Dharianwale-kirtan-online"
     }
   }
 }
